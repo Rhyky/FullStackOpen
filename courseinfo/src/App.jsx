@@ -7,17 +7,17 @@ const Header = (t) =>{
 const Content = (c) =>{
   return(
     <>
-    <Exer part={c.part1} exer={c.exer1}/>
-    <Exer part={c.part2} exer={c.exer2}/>
-    <Exer part={c.part3} exer={c.exer3}/>
+    <Part part={c.part1} exer={c.exer1}/>
+    <Part part={c.part2} exer={c.exer2}/>
+    <Part part={c.part3} exer={c.exer3}/>
     </>
   )
 }
 
-const Exer = (e) =>{
+const Part = (e) =>{
   return(
     <p>
-      {e.part}{e.exer}
+      {e.part} {e.exer}
     </p>    
   )
 }
