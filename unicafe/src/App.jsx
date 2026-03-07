@@ -1,39 +1,37 @@
 import { useState } from 'react'
 
+const Statistics = (props) => { 
+  const statAll = props.go + props.ba + props.neu  
+  const average = ((props.go-props.ba)/statAll)
+  const positive = ((props.go/statAll)*100)
+
+  return (
+    <div>
+      <div>all {statAll}</div> 
+      <div>average {average}</div> 
+      <div>positive {positive} %</div> 
+    </div>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const [all, setAll] = useState(0)
-  const [average, setAverage] = useState(0)
-  const [positive, setPositive] = useState(0)
-
-
   const handleGood = () => {
     const go = good+1
-    setGood(go)
-    updateStats(go, neutral, bad)
+    setGood(go)    
   }
   const handleNeutral = () => {
     const neu = neutral+1
-    setNeutral(neu)
-    updateStats(good, neu, bad)
+    setNeutral(neu)    
   }
   const handleBad = () => {
     const ba = bad+1
-    setBad(ba)
-    updateStats(good, neutral, ba)
+    setBad(ba)    
   }
-
-  const updateStats = (go, neu, ba) => {
-    const a = go+neu+ba 
-    setAll(a)
-    setAverage((go-ba)/a)
-    setPositive((go/a)*100)
-  }
-
 
   return (
     <div>
@@ -46,10 +44,9 @@ const App = () => {
       <div>good {good}</div>
       <div>neutral {neutral}</div>
       <div>bad {bad}</div> 
+      
+      <Statistics go={good} neu={neutral} ba={bad}/>
 
-      <div>all {all}</div> 
-      <div>average {average}</div> 
-      <div>positive {positive} %</div> 
     </div>
   )
 }
