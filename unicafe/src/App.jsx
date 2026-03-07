@@ -1,12 +1,17 @@
 import { useState } from 'react'
 
-const Statistics = (props) => { 
-  const statAll = props.go + props.ba + props.neu  
-  const average = ((props.go-props.ba)/statAll)
-  const positive = ((props.go/statAll)*100)
+const Statistics = ({good, neutral, bad}) => { 
+  const statAll = good + bad + neutral  
+  const average = ((good-bad)/statAll)
+  const positive = ((good/statAll)*100)
 
   return (
     <div>
+      <h1>statistics</h1>
+      <div>good {good}</div>
+      <div>neutral {neutral}</div>
+      <div>bad {bad}</div> 
+
       <div>all {statAll}</div> 
       <div>average {average}</div> 
       <div>positive {positive} %</div> 
@@ -40,12 +45,11 @@ const App = () => {
       <button onClick={handleNeutral}>neutral</button>
       <button onClick={handleBad}>bad</button>
 
-      <h1>statistics</h1>
-      <div>good {good}</div>
-      <div>neutral {neutral}</div>
-      <div>bad {bad}</div> 
-      
-      <Statistics go={good} neu={neutral} ba={bad}/>
+      <Statistics 
+        good={good} 
+        neutral={neutral} 
+        bad={bad}
+      />
 
     </div>
   )
