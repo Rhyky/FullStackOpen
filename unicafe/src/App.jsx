@@ -1,9 +1,5 @@
 import { useState } from 'react'
 
-const radNum =()=>{
-  const rad = Math.floor(Math.random()*anecdotes.length)
-  console.log(rad)
-}
 
 const App = () => {
   const anecdotes = [
@@ -16,14 +12,28 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
-  const [selected, setSelected] = useState(0)
+  
+
+  const [selected, setSelected] = useState(0) 
+  const [votes = Array(anecdotes.length).fill(0) , setVotes] = useState()  
+
+  const radNum =()=>{
+    setSelected(Math.floor(Math.random()*anecdotes.length))
+  }
+
+  const addVote =()=>{
+    const cvotes = {...votes}
+    cvotes[selected] += 1
+    setVotes(cvotes)
+  }
+
 
   return (
     <>
-    <div>
-      {anecdotes[selected]}
-    </div>
+    <div>{anecdotes[selected]}</div>
+    <div>has {votes[selected]} votes</div>
+
+    <button onClick={addVote}>vote</button>
     <button onClick={radNum}> next anecdote</button>
     </>
   )
